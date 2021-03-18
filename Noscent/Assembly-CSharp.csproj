@@ -50,6 +50,8 @@
      <Compile Include="Assets\Pong\Scripts\WallLogics.cs" />
      <Compile Include="Assets\StartMenu\Scripts\StartMenuLogics.cs" />
      <Compile Include="Assets\StartMenu\Scripts\UILogics.cs" />
+     <Compile Include="Assets\WhackAScent\Scripts\WASLogics.cs" />
+     <Compile Include="Assets\WhackAScent\Scripts\WASSpawn.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
