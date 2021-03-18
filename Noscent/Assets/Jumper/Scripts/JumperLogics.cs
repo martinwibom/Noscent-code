@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JumperLogics : MonoBehaviour
 {
+    public Timer Timer;
 
     public GameObject prefab;
     public GameObject apple;
@@ -47,6 +48,7 @@ public class JumperLogics : MonoBehaviour
             maxTime = 1.6f;
             StartCoroutine("GameSequence");
             Debug.Log("Game is now playing.");
+            Timer.ToggleTimer();
         }
     }
 
