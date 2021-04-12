@@ -36,24 +36,33 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Countdown.cs" />
      <Compile Include="Assets\Pong\Scripts\BallLogics.cs" />
      <Compile Include="Assets\Jumper\Scripts\JumperLogics.cs" />
-     <Compile Include="Assets\StartMenu\Scripts\UILogics.cs" />
      <Compile Include="Assets\FruitBasket\Scripts\FBFLoorLogics.cs" />
      <Compile Include="Assets\Jumper\Scripts\JumperSpawner.cs" />
+     <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\WhackAScent\Scripts\WASSpawn.cs" />
+     <Compile Include="Assets\Finder\Scripts\PrefabFinderLogics.cs" />
      <Compile Include="Assets\FruitBasket\Scripts\FruitBasketLogics.cs" />
      <Compile Include="Assets\WhackAScent\Scripts\WASObjectLogics.cs" />
      <Compile Include="Assets\Pong\Scripts\GoalLogics.cs" />
      <Compile Include="Assets\FruitBasket\Scripts\FBPlayerLogics.cs" />
+     <Compile Include="Assets\Finder\Scripts\FinderLogics.cs" />
+     <Compile Include="Assets\Scripts\UILogics.cs" />
+     <Compile Include="Assets\Scripts\Timer.cs" />
      <Compile Include="Assets\Pong\Scripts\PlayerLogics.cs" />
      <Compile Include="Assets\Pong\Scripts\PongLogics.cs" />
+     <Compile Include="Assets\Dodger\Scripts\PlayerDodgerLogics.cs" />
      <Compile Include="Assets\Jumper\Scripts\JumperPlayer.cs" />
+     <Compile Include="Assets\Jumper\Scripts\JumperPrefabLogics.cs" />
      <Compile Include="Assets\Pong\Scripts\WallLogics.cs" />
      <Compile Include="Assets\WhackAScent\Scripts\WASLogics.cs" />
-     <Compile Include="Assets\Jumper\Scripts\PrefabLogics.cs" />
+     <Compile Include="Assets\Dodger\Scripts\PrefabDodger.cs" />
+     <Compile Include="Assets\Dodger\Scripts\DodgerLogics.cs" />
      <Compile Include="Assets\StartMenu\Scripts\StartMenuLogics.cs" />
-     <Compile Include="Assets\Timer.cs" />
+     <Compile Include="Assets\Scripts\ScentOptionScript.cs" />
+     <Compile Include="Assets\Scripts\PlayPanelScript.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -64,8 +73,10 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+     <None Include="Assets\Fonts\README.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\Fonts\OFL.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />

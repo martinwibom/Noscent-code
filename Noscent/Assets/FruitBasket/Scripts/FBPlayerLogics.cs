@@ -10,7 +10,8 @@ public class FBPlayerLogics : MonoBehaviour
     public float movementSpeed = 10f;
     Rigidbody2D rb;
 
-    public bool paused = true;
+
+    public bool paused;
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,12 @@ public class FBPlayerLogics : MonoBehaviour
         }
     }
 
+    public void FreezePlayer()
+    {
+        rb.velocity = new Vector2(0,0);
+        paused = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -40,7 +47,8 @@ public class FBPlayerLogics : MonoBehaviour
         //Moves the player with velocity instead of transform.position
         //Player doesn't try and clip through the wall with this method. 
 
-        // if (!paused){    
+        if (!paused)
+        {    
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 rb.velocity = new Vector2(1f * movementSpeed, 0.0f);
@@ -63,6 +71,6 @@ public class FBPlayerLogics : MonoBehaviour
             }
         }
 
-    // }
+    }
 
 }

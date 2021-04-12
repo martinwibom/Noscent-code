@@ -14,12 +14,12 @@ public class GoalLogics : MonoBehaviour
             {
                 Debug.Log("Player scored");
                 PongLogics.Goal();
-                PongLogics.Restart();
+                // PongLogics.Restart();
             } else if (this.tag == "RightWall")
             {
                 Debug.Log("Player missed the ball, point deducted");
                 PongLogics.Miss();
-                PongLogics.Restart();
+                // PongLogics.Restart();
 
             }
         }

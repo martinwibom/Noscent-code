@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4831733584674705511}
   - component: {fileID: 4831733584674705510}
   - component: {fileID: 4831733584674705513}
-  - component: {fileID: 4831733584674705512}
+  - component: {fileID: 4003941880901447325}
+  - component: {fileID: 4468320419086550182}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -50,6 +51,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -113,7 +115,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4831733584674705515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -139,13 +141,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4831733584674705515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0054694936, y: -0.0033193529}
+  m_Offset: {x: 0.0054694936, y: -0.0040431917}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -156,9 +158,58 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24115779, y: 0.26336128}
+  m_Size: {x: 0.24115779, y: 0.2619136}
   m_EdgeRadius: 0
---- !u!114 &4831733584674705512
+--- !u!60 &4003941880901447325
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831733584674705515}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.27, y: 0.27}
+    newSize: {x: 0.27, y: 0.27}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.12524414, y: 0.055766605}
+      - {x: 0.09518555, y: 0.08556153}
+      - {x: 0.03506836, y: 0.08516602}
+      - {x: 0.03480469, y: 0.084902346}
+      - {x: 0.035200197, y: 0.10507324}
+      - {x: 0.035200197, y: 0.12498047}
+      - {x: 0.034936525, y: 0.12524414}
+      - {x: 0.015029297, y: 0.12524414}
+      - {x: 0.014765626, y: 0.12498047}
+      - {x: 0.004746094, y: 0.11562012}
+      - {x: -0.014370117, y: 0.10520508}
+      - {x: -0.024521485, y: 0.11535645}
+      - {x: -0.07527833, y: 0.11562012}
+      - {x: -0.115224615, y: 0.054975588}
+      - {x: -0.115224615, y: -0.054975588}
+      - {x: -0.11496094, y: -0.05523926}
+      - {x: -0.10520508, y: -0.084902346}
+      - {x: -0.09492188, y: -0.09518555}
+      - {x: -0.08516602, y: -0.11548828}
+      - {x: -0.0454834, y: -0.135}
+      - {x: 0.055634767, y: -0.135}
+      - {x: 0.09518555, y: -0.11562012}
+      - {x: 0.115224615, y: -0.084902346}
+      - {x: 0.12524414, y: -0.056557618}
+--- !u!114 &4468320419086550182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,6 +218,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4831733584674705515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc826a84799bef64f802581946d329b4, type: 3}
+  m_Script: {fileID: 11500000, guid: c9b9761b7ce74d34980d181c159542ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -9,8 +9,42 @@ public class Timer : MonoBehaviour
 
     public bool counting;
 
+    TextMeshProUGUI text;
+
     private void Start() {
         counting = false;
+        text = this.GetComponent<TextMeshProUGUI>();
+    }
+
+
+
+    public void ToggleTimer()
+    {
+        if(!counting)
+        {
+            counting = true;
+        } else if (counting)
+        {
+            counting = false;
+        }
+    }
+
+    public void UpdateTime(int newTime)
+    {
+        text.text = newTime.ToString();
+    }
+
+    void Update()
+    {
+        if(counting)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                int time = (int) timeRemaining;
+                this.GetComponent<TextMeshProUGUI>().text = time.ToString();
+            }
+        }
     }
 
     // IEnumerator StartCountdown()
@@ -28,28 +62,4 @@ public class Timer : MonoBehaviour
     //     }
     //     // yield break;
     // }
-
-    public void ToggleTimer()
-    {
-        if(!counting)
-        {
-            counting = true;
-        } else if (counting)
-        {
-            counting = false;
-        }
-    }
-
-    void Update()
-    {
-        if(counting)
-        {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                int time = (int) timeRemaining;
-                this.GetComponent<TextMeshProUGUI>().text = time.ToString();
-            }
-        }
-    }
 }

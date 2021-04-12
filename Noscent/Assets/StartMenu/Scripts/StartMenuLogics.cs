@@ -26,9 +26,17 @@ public class StartMenuLogics : MonoBehaviour
         SceneManager.LoadScene("Jumper");
     }
 
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKey("escape"))
+        {
+            QuitApplication();
+        }
     }
 }

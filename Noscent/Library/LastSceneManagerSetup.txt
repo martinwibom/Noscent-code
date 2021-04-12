@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Jumper.unity
+- path: Assets/Scenes/Finder.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

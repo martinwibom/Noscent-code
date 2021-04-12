@@ -10,20 +10,23 @@ public class PlayerLogics : MonoBehaviour
 
     public bool paused = true;
     
-    // Start is called before the first frame update
+    Vector3 startPosition;
+    
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         paused = true;
+        startPosition = transform.position;
     }
 
-    // Update is called once per frame
+    public void ResetPosition()
+    {
+        transform.position = startPosition;
+        rb.velocity = new Vector2(0,0);
+    }
+
     void Update()
     {
-
-        // var movement = Input.GetAxis("Vertical");
-        // transform.position += new Vector3(0, movement, 0) * Time.deltaTime * movementSpeed;
-        // // rb.velocity = new Vector2(movement.x, movement.y);
 
         //Moves the player with velocity instead of transform.position
         //Player doesn't try and clip through the wall with this method. 
