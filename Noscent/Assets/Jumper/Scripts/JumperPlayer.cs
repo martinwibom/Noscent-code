@@ -8,11 +8,13 @@ public class JumperPlayer : MonoBehaviour
     private float jumpHeight = 10f;
     
     public bool paused;
+    Vector2 startPos;
 
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         paused = true;
+        startPos = this.transform.position;
     }
 
     public void FreezePlayer()
@@ -33,7 +35,7 @@ public class JumperPlayer : MonoBehaviour
     {
         if(!paused)
         {
-            if(this.transform.position.y <= -3.3f)
+            if(this.transform.position.y <= startPos.y + 0.2f)
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                     {

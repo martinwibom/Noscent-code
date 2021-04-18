@@ -34,9 +34,7 @@ public class FinderLogics : MonoBehaviour
     void Start()
     {
         tempList = new List<GameObject>(objectList);
-        // prefab = apple;
         score = 0;
-        // Play();
     }
 
     void RandomCorrect(int maxRange)

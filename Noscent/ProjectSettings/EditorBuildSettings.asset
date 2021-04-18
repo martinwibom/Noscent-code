@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pong.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Dodger.unity
+    guid: c7b955863695c404b8f51a2bc4a6f186
+  - enabled: 1
+    path: Assets/Scenes/Finder.unity
+    guid: 06a8d0b33447c8444af842d93462a6c9
   m_configObjects: {}

@@ -5,10 +5,9 @@ using UnityEngine;
 public class JumperLogics : MonoBehaviour
 {
     public UILogics UI;
-    public Timer Timer;
-    public Score ScoreCounter;
-    public Countdown CountdownLogics;
     public JumperPlayer PlayerLogics;
+    public ScentOptionScript ScentOptionScript;
+    public PlayPanelScript PlayPanelScript;
 
     public GameObject prefab;
     public GameObject apple;
@@ -44,60 +43,23 @@ public class JumperLogics : MonoBehaviour
         obstacleHitBool = false;
     }
 
-    public void selectGarlic()
-    {
-        prefab = garlic;
-        UI.StartCoroutine("SelectedScent", "Garlic");
-    }
-
-    public void selectApple()
-    {
-        prefab = apple;
-        UI.StartCoroutine("SelectedScent", "Apple");
-    }
-    
-    public void selectSoap()
-    {
-        prefab = soap;
-        UI.StartCoroutine("SelectedScent", "Soap");
-    }
-
-    public void selectCoffee()
-    {
-        prefab = coffee;
-        UI.StartCoroutine("SelectedScent", "Coffee");
-    }
-
-    public void selectClove()
-    {
-        prefab = clove;
-        UI.StartCoroutine("SelectedScent", "Clove");
-    }
-
-    public void selectOrange()
-    {
-        prefab = orange;
-        UI.StartCoroutine("SelectedScent", "Orange");
-    }
-
     public void Play()
     {   
         if(prefab != null && gamePlaying == false)
         {
             gamePlaying = true;
-            prefabSpeed = -9f;
-            minTime = 0.7f;
-            maxTime = 1.1f;
-            // StartCoroutine("GameSequence");
+            prefabSpeed = -7f;
+            minTime = 1f;
+            maxTime = 1.3f;
             Debug.Log("Game is now playing.");
-            // Timer.ToggleTimer();
+            PlayPanelScript.gameObject.SetActive(false);
             StartCoroutine("PlayCoroutine");
         }
     }
 
     IEnumerator PlayCoroutine()
     {
-        CountdownLogics.StartCoroutine("TwoSeconds");
+        UI.StartCoroutine("TwoSeconds");
 
         yield return new WaitForSeconds(2);
 
@@ -117,7 +79,7 @@ public class JumperLogics : MonoBehaviour
         if(obstacleHitBool)
         {
             StopCoroutine("ObstacleHit");
-            CountdownLogics.StopCoroutine("TwoSeconds");
+            UI.StopCoroutine("TwoSeconds");
         }
     }
 
@@ -145,7 +107,7 @@ public class JumperLogics : MonoBehaviour
     {
         FreezeObstacles();
         UI.AnouncementText("PLAYER HIT!");
-        CountdownLogics.StartCoroutine("TwoSeconds");
+        UI.StartCoroutine("TwoSeconds");
         PlayerLogics.FreezePlayer();
         StopCoroutine("RandomSpawn");
         obstacleHitBool = true;
@@ -167,7 +129,7 @@ public class JumperLogics : MonoBehaviour
     public void AddScore()
     {
         score++;
-        ScoreCounter.AddScore();
+        UI.UpdateScore(score);
 
 
     }
@@ -210,7 +172,7 @@ public class JumperLogics : MonoBehaviour
         prefabSpeed -= 0.05f;
         
         //ADD IF STATEMENT TO STOP MAKING IT SPAWN FASTER AFTER A CERTAIN CAP HAS BEEN HIT, IF NOT THE GAME EVENTUALLY CRASHES
-        if(minTime >= 0.5f)
+        if(minTime >= 0.8f)
         {
             minTime -= 0.01f;
             maxTime -= 0.01f;
@@ -246,7 +208,7 @@ public class JumperLogics : MonoBehaviour
         {
             if (timeRemaining >= 0)
             {
-                Timer.UpdateTime(timeRemaining);
+                UI.UpdateTime(timeRemaining);
 
                 yield return new WaitForSeconds(1);
 
@@ -257,4 +219,27 @@ public class JumperLogics : MonoBehaviour
             }
         }
     } 
+
+    public void CheckScent()
+    {
+        if(ScentOptionScript.appleSelected)
+        {
+            prefab = apple;
+        } else if (ScentOptionScript.cloveSelected)
+        {
+            prefab = clove;
+        } else if (ScentOptionScript.coffeeSelected)
+        {
+            prefab = coffee;
+        } else if (ScentOptionScript.garlicSelected)
+        {
+            prefab = garlic;
+        } else if (ScentOptionScript.orangeSelected)
+        {
+            prefab = orange;
+        } else if (ScentOptionScript.soapSelected)
+        {
+            prefab = soap;
+        }
+    }
 }

@@ -27,6 +27,14 @@ public class BallLogics : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D hit) {
+        if(hit.gameObject.name == "Player")
+        {
+        float dist = this.transform.position.y - GameObject.Find("Player").transform.position.y;
+        rb.velocity = new Vector2(-speed, dist *10f);
+        }        
+    }
+
     public void Pause()
     {
         ballVelocity = rb.velocity;

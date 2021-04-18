@@ -41,6 +41,7 @@
      <Compile Include="Assets\Jumper\Scripts\JumperLogics.cs" />
      <Compile Include="Assets\FruitBasket\Scripts\FBFLoorLogics.cs" />
      <Compile Include="Assets\Jumper\Scripts\JumperSpawner.cs" />
+     <Compile Include="Assets\Scripts\PlayPanelScript.cs" />
      <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\WhackAScent\Scripts\WASSpawn.cs" />
      <Compile Include="Assets\Finder\Scripts\PrefabFinderLogics.cs" />
@@ -58,11 +59,11 @@
      <Compile Include="Assets\Jumper\Scripts\JumperPrefabLogics.cs" />
      <Compile Include="Assets\Pong\Scripts\WallLogics.cs" />
      <Compile Include="Assets\WhackAScent\Scripts\WASLogics.cs" />
+     <Compile Include="Assets\Scripts\ScentOptionScript.cs" />
      <Compile Include="Assets\Dodger\Scripts\PrefabDodger.cs" />
      <Compile Include="Assets\Dodger\Scripts\DodgerLogics.cs" />
      <Compile Include="Assets\StartMenu\Scripts\StartMenuLogics.cs" />
-     <Compile Include="Assets\Scripts\ScentOptionScript.cs" />
-     <Compile Include="Assets\Scripts\PlayPanelScript.cs" />
+     <Compile Include="Assets\Scripts\HowToPlayScript.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

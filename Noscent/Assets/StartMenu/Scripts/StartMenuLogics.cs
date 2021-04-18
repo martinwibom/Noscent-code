@@ -31,6 +31,16 @@ public class StartMenuLogics : MonoBehaviour
         Application.Quit();
     }
 
+    public void playDodger()
+    {
+        SceneManager.LoadScene("Dodger");
+    }
+
+    public void playFinder()
+    {
+        SceneManager.LoadScene("Finder");
+    }
+
     // Update is called once per frame
     void Update()
     {

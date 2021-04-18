@@ -16,18 +16,24 @@ public class UILogics : MonoBehaviour
 
     // Start is called before the first frame update
     public TextMeshProUGUI anoText;
-
     public TextMeshProUGUI cdText;
-
     public TextMeshProUGUI timeText;
-
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI panelTitle;
+    public GameObject htpPanel;
+    
     
 
     
     void Start()
     {
+        WhiteText();
+    }
 
+    public void htpBTN()
+    {
+        htpPanel.SetActive(true);
+        panelTitle.text = "How to play";
     }
 
     IEnumerator TwoSeconds()
@@ -79,6 +85,21 @@ public class UILogics : MonoBehaviour
     {
         anoText.text = newText;
     }
+
+    void WhiteText()
+    {
+        if(SceneManager.GetActiveScene().name == "Pong")
+        {
+            timeText.color = Color.white;
+            scoreText.color = Color.white;
+            GameObject.Find("TimeRemainingText").GetComponent<TextMeshProUGUI>().color = Color.white;
+            GameObject.Find("CounterText").GetComponent<TextMeshProUGUI>().color = Color.white;
+            GameObject.Find("BackText").GetComponent<TextMeshProUGUI>().color = Color.white;
+
+        }
+    }
+
+    
 
     // Update is called once per frame
     void Update()

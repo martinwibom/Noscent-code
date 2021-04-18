@@ -8,9 +8,8 @@ public class PongLogics : MonoBehaviour
     public UILogics UI;
     public BallLogics BallLogics;
     public PlayerLogics PlayerLogics;
-    public Timer Timer;
-    public Score ScoreCounter;
-    public Countdown CountdownLogics;
+    public ScentOptionScript ScentOptionScript;
+    public PlayPanelScript PlayPanelScript;
     
     public GameObject prefab;
     public GameObject apple;
@@ -66,7 +65,9 @@ public class PongLogics : MonoBehaviour
 
     IEnumerator PlayCoroutine()
     {
-        CountdownLogics.StartCoroutine("TwoSeconds");
+        UI.StartCoroutine("TwoSeconds");
+        PlayPanelScript.gameObject.SetActive(false);
+
 
         yield return new WaitForSeconds(2);
 
@@ -82,7 +83,7 @@ public class PongLogics : MonoBehaviour
         {
             if (timeRemaining >= 0)
             {
-                Timer.UpdateTime(timeRemaining);
+                UI.UpdateTime(timeRemaining);
 
                 yield return new WaitForSeconds(1);
 
@@ -91,8 +92,9 @@ public class PongLogics : MonoBehaviour
 
                 if(restartRunning){
                     StopCoroutine("RestartCoroutine");
-                    CountdownLogics.StopCoroutine("TwoSeconds");
-                    CountdownLogics.ResetText();}
+                    UI.StopCoroutine("TwoSeconds");
+                    UI.cdText.text = "";
+                }
                 
                 GameOver();
                 break;
@@ -108,47 +110,6 @@ public class PongLogics : MonoBehaviour
 
     }
 
-    public void selectGarlic()
-    {
-        prefab = garlic;
-        SpawnBall();
-        UI.StartCoroutine("SelectedScent", "Garlic");
-    }
-
-    public void selectApple()
-    {
-        prefab = apple;
-        SpawnBall();
-        UI.StartCoroutine("SelectedScent", "Apple");
-    }
-    
-    public void selectSoap()
-    {
-        prefab = soap;
-        SpawnBall();
-        UI.StartCoroutine("SelectedScent", "Soap");
-    }
-
-    public void selectCoffee()
-    {
-        prefab = coffee;
-        SpawnBall();
-        UI.StartCoroutine("SelectedScent", "Coffee");
-    }
-
-    public void selectClove()
-    {
-        prefab = clove;
-        SpawnBall();
-        UI.StartCoroutine("SelectedScent", "Clove");
-    }
-
-    public void selectOrange()
-    {
-        prefab = orange;
-        SpawnBall();
-        UI.StartCoroutine("SelectedScent", "Orange");
-    }
     
     public void Pause()
     {
@@ -182,7 +143,7 @@ public class PongLogics : MonoBehaviour
         PlayerLogics.ResetPosition();
         BallLogics.ResetBall();
         BallLogics.SetRandomPosition();
-        CountdownLogics.StartCoroutine("TwoSeconds");
+        UI.StartCoroutine("TwoSeconds");
 
         yield return new WaitForSeconds(2);
 
@@ -194,7 +155,7 @@ public class PongLogics : MonoBehaviour
     public void Goal()
     {
         goalCount++;
-        ScoreCounter.UpdateScore(goalCount);
+        UI.UpdateScore(goalCount);
         StartCoroutine("RestartCoroutine");
 
     }
@@ -205,5 +166,40 @@ public class PongLogics : MonoBehaviour
         // goalCount--;
         // ScoreCounter.RemoveScore();
         StartCoroutine("RestartCoroutine");
+    }
+
+    public void CheckScent()
+    {
+        if(ScentOptionScript.appleSelected)
+        {
+            prefab = apple;
+            SpawnBall();
+
+        } else if (ScentOptionScript.cloveSelected)
+        {
+            prefab = clove;
+            SpawnBall();
+
+        } else if (ScentOptionScript.coffeeSelected)
+        {
+            prefab = coffee;
+            SpawnBall();
+
+        } else if (ScentOptionScript.garlicSelected)
+        {
+            prefab = garlic;
+            SpawnBall();
+
+        } else if (ScentOptionScript.orangeSelected)
+        {
+            prefab = orange;
+            SpawnBall();
+
+        } else if (ScentOptionScript.soapSelected)
+        {
+            prefab = soap;
+            SpawnBall();
+
+        }
     }
 }
