@@ -22,6 +22,11 @@ public class FruitBasketLogics : MonoBehaviour
     public GameObject clove;
     public GameObject orange;
 
+    public GameObject player;
+    public float movementSpeed;
+
+    public int life;
+    public int scoreGoal;
     public int score;
     public int time;
     public int timeRemaining;
@@ -55,6 +60,8 @@ public class FruitBasketLogics : MonoBehaviour
     IEnumerator PlayCoroutine()
     {
         UI.StartCoroutine("TwoSeconds");
+        PlayerLogics.movementSpeed = movementSpeed;
+        // Cursor.visible = false;
 
         yield return new WaitForSeconds(2);
 
@@ -80,6 +87,25 @@ public class FruitBasketLogics : MonoBehaviour
 
         }
     }
+
+    void EasyDifficulty()
+    {
+        player.transform.localScale = new Vector3(150, player.transform.localScale.y, 0);
+        movementSpeed = 15f;
+    }
+
+    void MediumDifficulty()
+    {
+        player.transform.localScale = new Vector3(125, player.transform.localScale.y, 0);
+        movementSpeed = 12.5f;
+    }
+
+    void HardDifficulty()
+    {
+        player.transform.localScale = new Vector3(100, player.transform.localScale.y, 0);
+        movementSpeed = 10f;
+    }
+
 
 
     IEnumerator GameSequence()
@@ -150,6 +176,20 @@ public class FruitBasketLogics : MonoBehaviour
         } else if (ScentOptionScript.soapSelected)
         {
             prefab = soap;
+        }
+    }
+
+    public void CheckDifficulty()
+    {
+        if(ScentOptionScript.easySelected)
+        {
+            EasyDifficulty();
+        } else if (ScentOptionScript.mediuSelected)
+        {
+            MediumDifficulty();
+        } else if (ScentOptionScript.hardSelected)
+        {
+            HardDifficulty();
         }
     }
 

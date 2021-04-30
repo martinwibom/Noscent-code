@@ -54,6 +54,8 @@ public class DodgerLogics : MonoBehaviour
         // StopCoroutine("RandomSpawn");
         FreezeObjects();
         PlayerLogics.FreezePlayer();
+        UI.AnouncementText("CRASHED");
+        UI.StartCoroutine("TwoSeconds");
         StopCoroutine("GameStopwatch");
         StopCoroutine("RandomSpawn");
 
@@ -63,6 +65,9 @@ public class DodgerLogics : MonoBehaviour
         StartCoroutine("GameStopwatch");
         StartCoroutine("RandomSpawn");
         UnfreezeObjects();
+        UI.AnouncementText("");
+        UI.StopCoroutine("TwoSeconds");
+        UI.cdText.text = "";
         PlayerLogics.UnfreezePlayer();
         
     }

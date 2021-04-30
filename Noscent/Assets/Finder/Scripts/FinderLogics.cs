@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using DG.Tweening;
 
 public class FinderLogics : MonoBehaviour
 {
     public UILogics UI;
     public ScentOptionScript ScentOptionScript;
     public PlayPanelScript PlayPanelScript;
-    
+
+    public GameObject topWall;
+    public GameObject bottomWall;
+    public GameObject rightWall;
+    public GameObject leftWall;
+
+    public AudioSource startSmelling;
+    public AudioSource stopSmelling;
+
     public GameObject objects;
     public Sprite prefab;
     public Sprite apple;
@@ -17,15 +27,33 @@ public class FinderLogics : MonoBehaviour
     public Sprite clove;
     public Sprite orange;
 
+    // public Sprite[] coffeeBGlist = new Sprite[4];
+    // public Sprite[] appleBgList = new Sprite[4];
+    // public Sprite[] cloveBgList = new Sprite[2];
+    // public Sprite[] soapBgList = new Sprite[4];
+    // public Sprite[] garlicBgList = new Sprite[4];
+    // public Sprite[] orangeBgList = new Sprite[4];
+
+    public List<Sprite> coffeBgList = new List<Sprite>();
+    public List<Sprite> appleBgList = new List<Sprite>();
+    public List<Sprite> cloveBgList = new List<Sprite>();
+    public List<Sprite> soapBgList = new List<Sprite>();
+    public List<Sprite> orangeBgList = new List<Sprite>();
+    public List<Sprite> garlicBgList = new List<Sprite>();
+    public List<Sprite> gameBgList;
+
+    public SpriteRenderer background;
+    public Transform blackBG;
+
     public int timeRemaining;
     public int score;
     public int streak;
     public int numberOfCorrect;
     public int maxCorrect;
+    int BGnumber;
     
     public float smellTime;
     public float clickTime;
-    
 
     public List<GameObject> objectList = new List<GameObject>();
     List<GameObject> tempList;
@@ -35,6 +63,7 @@ public class FinderLogics : MonoBehaviour
     {
         tempList = new List<GameObject>(objectList);
         score = 0;
+        
     }
 
     void RandomCorrect(int maxRange)
@@ -62,30 +91,50 @@ public class FinderLogics : MonoBehaviour
 
         timeRemaining = 60;
         streak = 1;
+        BGnumber=0;
         StartCoroutine("GameSequence");
         StartCoroutine("ToggleTimer");
+        ActivateWalls();
     }
 
     IEnumerator GameSequence()
     {
         while(true){
+            ChangeBackground();
+            blackBG.position = new Vector3(0,11.81f,0);
+            blackBG.DOMove(new Vector3(0,1.72f,0), smellTime, false);
+            // background.color = new Color(1,1,1,1);
+            // background.DOFade(0,smellTime);
+            startSmelling.Play();
             AllUnclickable();
             // ThreeCorrect();
             CheckCorrect();
             SelectCorrect(streak);
+            // GreenWalls();
 
             yield return new WaitForSeconds(smellTime);
 
+            stopSmelling.Play();
             AllClickable();
             AllAnon();
-
+            // RedWalls();
 
             yield return new WaitForSeconds(clickTime);
         }
     }
 
 
+    void ChangeBackground()
+    {
+            background.sprite = gameBgList[BGnumber];
+            BGnumber++;
+            if(BGnumber== gameBgList.Count) BGnumber = 0;
+    }
 
+    void MoveBG()
+    {
+        blackBG.DOMove(new Vector3(0,1,0), smellTime, false);
+    }
 
 
 
@@ -169,6 +218,30 @@ public class FinderLogics : MonoBehaviour
         }
     }
 
+    void ActivateWalls()
+    {
+       leftWall.SetActive(true);
+       rightWall.SetActive(true);
+       bottomWall.SetActive(true);
+       topWall.SetActive(true); 
+    }
+
+    void GreenWalls()
+    {
+        leftWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
+        rightWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
+        bottomWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
+        topWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
+    }
+
+    void RedWalls()
+    {
+        leftWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
+        rightWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
+        bottomWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
+        topWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
+    }
+
     IEnumerator ToggleTimer()
     {  
         while (true)
@@ -192,95 +265,29 @@ public class FinderLogics : MonoBehaviour
         if(ScentOptionScript.appleSelected)
         {
             prefab = apple;
+            gameBgList = new List<Sprite>(appleBgList);
         } else if (ScentOptionScript.cloveSelected)
         {
             prefab = clove;
+            gameBgList = new List<Sprite>(cloveBgList);
         } else if (ScentOptionScript.coffeeSelected)
         {
             prefab = coffee;
+            gameBgList = new List<Sprite>(coffeBgList);
         } else if (ScentOptionScript.garlicSelected)
         {
             prefab = garlic;
+            gameBgList = new List<Sprite>(garlicBgList);
         } else if (ScentOptionScript.orangeSelected)
         {
             prefab = orange;
+            gameBgList = new List<Sprite>(orangeBgList);
         } else if (ScentOptionScript.soapSelected)
         {
             prefab = soap;
+            gameBgList = new List<Sprite>(soapBgList);
         }
     }
-
-
-
-
-
-
-//      !!!!!!!!!!!!!THIS CODE RUNS ON A VECTOR3 BASED SYSTEM. OLD AND MIGHT NOT BE USED!!!!!!!!!!!!!!!!!!!!
-//    public List<GameObject> spawnPoints = new List<GameObject>();
-//     List<GameObject> tempList = new List<GameObject>();
-//     List<GameObject> hiddenObjects = new List<GameObject>(); 
-    // IEnumerator PlaySession()
-    // {
-    //     SpawnObjects();
-        
-    //     yield return new WaitForSeconds(5);
-
-    //     RemoveObjects();
-
-    //     SpawnAnonObjects();
-
-
-    // }
-
-    // void RandomSpawn(int maxRange)
-    // {
-    //     int i = Random.Range(0, maxRange);
-
-    //     GameObject childObject = Instantiate(apple, tempList[i].transform.position, Quaternion.identity);
-    //     childObject.transform.SetParent(objects.transform);
-    //     hiddenObjects.Add(tempList[i]);
-    //     tempList.RemoveAt(i);
-    // }
-
-    // void SpawnAnonObjects()
-    // {
-    //     for (int i = 0; i < spawnPoints.Count; i++)
-    //     {
-    //         if(hiddenObjects.Contains(spawnPoints[i]))
-    //         {
-    //             Debug.Log("Correct objected should have spawned at " + spawnPoints[i]);
-    //             GameObject child = Instantiate(correctObject, spawnPoints[i].transform.position, Quaternion.identity);
-    //             child.transform.SetParent(objects.transform);
-    //         } else
-    //         {
-    //             GameObject child = Instantiate(wrongObject, spawnPoints[i].transform.position, Quaternion.identity);
-    //             child.transform.SetParent(objects.transform);
-    //         }
-    //     }
-    // }
-
-    // void RemoveObjects()
-    // {
-    //     foreach (Transform child in objects.transform)
-    //     {
-    //         Destroy(child.gameObject);
-    //     }
-    // }
-    
-    // void SpawnObjects()
-    // {
-    //     hiddenObjects.Clear();
-    //     tempList = spawnPoints;
-    //     RandomSpawn(9);
-    //     RandomSpawn(8);
-    //     RandomSpawn(7);
-    // }
-
-    // void Start()
-    // {
-    //     // SpawnObjects();
-    //     // StartCoroutine("PlaySession");
-    // }
 
 
 }

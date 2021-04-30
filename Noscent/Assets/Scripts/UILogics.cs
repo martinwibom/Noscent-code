@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Linq;
 
 
 public class UILogics : MonoBehaviour
 {
 
-    // GAME VERSION 1.2
-    //Finder edition
+    // GAME VERSION 1.25
+    //Difficulty addition
 
 
     // public GameObject BackBTN;
@@ -21,13 +22,20 @@ public class UILogics : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI panelTitle;
     public GameObject htpPanel;
-    
+    public GameObject RedCross;
+
+    public GameObject[] hearts = new GameObject[5];
+
+    public int life;
+
     
 
     
     void Start()
     {
         WhiteText();
+        NoDifficulty();
+
     }
 
     public void htpBTN()
@@ -54,6 +62,63 @@ public class UILogics : MonoBehaviour
 
         yield break;
 
+    }
+
+    // public void SetLife(int lifeAmount)
+    // {
+    //     life = lifeAmount;
+    //     int count;
+    //     foreach(GameObject child in hearts)
+    //     {
+    //         if(child.activeInHierarchy)
+    //         {
+    //             count++;
+    //             if(count > life) child.SetActive(false);
+    //         }
+    //     }
+        
+    // }
+
+    public void SetLife(int lifeAmount)
+    {
+        int removeLife = 5 - lifeAmount;
+        for (int i = 0; i < removeLife; i++)
+        {
+            LoseLife();
+        }
+    }
+
+    public void LoseLife()
+    {
+        foreach(GameObject heart in hearts.Reverse())
+        {
+            if(heart.activeInHierarchy == true)
+            {
+                StartCoroutine("RemoveHeart", heart);
+                return;
+            }
+        }
+    }
+
+    IEnumerator RemoveHeart(GameObject heart)
+    {
+        heart.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        heart.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        heart.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        heart.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        heart.SetActive(false);
     }
 
     public IEnumerator SelectedScent(string scent)
@@ -88,7 +153,7 @@ public class UILogics : MonoBehaviour
 
     void WhiteText()
     {
-        if(SceneManager.GetActiveScene().name == "Pong")
+        if(SceneManager.GetActiveScene().name == "Pong" ||SceneManager.GetActiveScene().name == "Finder" )
         {
             timeText.color = Color.white;
             scoreText.color = Color.white;
@@ -96,6 +161,14 @@ public class UILogics : MonoBehaviour
             GameObject.Find("CounterText").GetComponent<TextMeshProUGUI>().color = Color.white;
             GameObject.Find("BackText").GetComponent<TextMeshProUGUI>().color = Color.white;
 
+        }
+    }
+
+    void NoDifficulty()
+    {
+        if(SceneManager.GetActiveScene().name == "Finder" || SceneManager.GetActiveScene().name == "Dodger")
+        {
+            RedCross.SetActive(true);
         }
     }
 

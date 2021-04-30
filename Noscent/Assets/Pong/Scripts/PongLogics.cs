@@ -26,8 +26,9 @@ public class PongLogics : MonoBehaviour
     GameObject ball;
 
     public int timeRemaining;
-
     public int goalCount;
+
+    public float ballSpeed;
 
     bool gameOver;
     bool restartRunning;
@@ -102,12 +103,29 @@ public class PongLogics : MonoBehaviour
         }
     }
 
+    void EasyDifficulty()
+    {
+        ballSpeed = 5f;
+        goal.transform.localScale = new Vector3(goal.transform.localScale.x, 200, 0);
+    }
+
+    void MediumDifficulty()
+    {
+        ballSpeed = 8f;
+        goal.transform.localScale = new Vector3(goal.transform.localScale.x, 175, 0);
+    }
+
+    void HardDifficulty()
+    {
+        ballSpeed = 10f;
+        goal.transform.localScale = new Vector3(goal.transform.localScale.x, 150, 0);
+    }
+
     void GameOver()
     {
         BallLogics.Pause();
         PlayerLogics.paused = true;
         UI.AnouncementText("Game Over");
-
     }
 
     
@@ -166,6 +184,20 @@ public class PongLogics : MonoBehaviour
         // goalCount--;
         // ScoreCounter.RemoveScore();
         StartCoroutine("RestartCoroutine");
+    }
+
+    public void CheckDifficulty()
+    {
+        if(ScentOptionScript.easySelected)
+        {
+            EasyDifficulty();
+        } else if (ScentOptionScript.mediuSelected)
+        {
+            MediumDifficulty();
+        } else if (ScentOptionScript.hardSelected)
+        {
+            HardDifficulty();
+        }
     }
 
     public void CheckScent()

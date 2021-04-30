@@ -14,6 +14,10 @@ public class ScentOptionScript : MonoBehaviour
     public Image orangeBTN;
     public Image soapBTN;
 
+    public Image easyBTN;
+    public Image mediumBTN;
+    public Image hardBTN;
+
     public bool appleSelected;
     public bool cloveSelected;
     public bool coffeeSelected;
@@ -22,10 +26,14 @@ public class ScentOptionScript : MonoBehaviour
     public bool soapSelected;
     public bool scentSelected;
 
+    public bool easySelected;
+    public bool mediuSelected;
+    public bool hardSelected;
+
     string scentText;
 
 
-    void allWhite()
+    void allScentWhite()
     {
         appleBTN.color = Color.white;
         cloveBTN.color = Color.white;
@@ -33,10 +41,17 @@ public class ScentOptionScript : MonoBehaviour
         garlicBTN.color = Color.white;
         orangeBTN.color = Color.white;
         soapBTN.color = Color.white;
-        Debug.Log("AllWhite ran");
+        Debug.Log("allScentWhite ran");
+    }
+
+    void allDifficultyWhite()
+    {
+        easyBTN.color = Color.white;
+        mediumBTN.color = Color.white;
+        hardBTN.color = Color.white;
     }
     
-    void allFalse()
+    void allScentFalse()
     {
         appleSelected = false;
         cloveSelected = false;
@@ -45,43 +60,69 @@ public class ScentOptionScript : MonoBehaviour
         orangeSelected = false;
         soapSelected = false;
     }
+    
+    void allDifficultyFalse()
+    {
+        easySelected = false;
+        mediuSelected = false;
+        hardSelected = false;
+    }
 
     public void SelectScent(Image caller)
     {
-        allWhite();
+        allScentWhite();
         caller.color = new Color32(37,188,42, 100);
         scentSelected = true;
         if(caller.name == "Apple")
         {
-            allFalse();
+            allScentFalse();
             appleSelected = true;
             scentText = "Apple";
             Debug.Log(appleSelected);
         } else if (caller.name == "Clove")
         {
-            allFalse();
+            allScentFalse();
             cloveSelected = true;
             scentText = "Clove";
         } else if (caller.name == "Coffee")
         {
-            allFalse();
+            allScentFalse();
             coffeeSelected = true;
             scentText = "Coffee";
         } else if (caller.name == "Garlic")
         {
-            allFalse();
+            allScentFalse();
             garlicSelected = true;
             scentText = "Garlic";
         } else if (caller.name == "Orange")
         {
-            allFalse();
+            allScentFalse();
             orangeSelected = true;
             scentText = "Orange";
         } else if (caller.name == "Soap")
         {
-            allFalse();
+            allScentFalse();
             soapSelected = true;
             scentText = "Soap";
+        }
+    }
+
+    public void DifficultySelection(Image caller)
+    {
+        allDifficultyWhite();
+        caller.color = new Color32(37,188,42,100);
+        if(caller.name == "Easy")
+        {
+            allDifficultyFalse();
+            easySelected = true;
+        } else if (caller.name == "Medium")
+        {
+            allDifficultyFalse();
+            mediuSelected = true;
+        } else if (caller.name == "Hard")
+        {
+            allDifficultyFalse();
+            hardSelected = true;
         }
     }
     

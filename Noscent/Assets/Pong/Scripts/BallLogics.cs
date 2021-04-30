@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BallLogics : MonoBehaviour
 {
+    public PongLogics Logics;
 
-    float speed = 10f;
+    public float speed;
     public Rigidbody2D rb;
 
     Vector2 ballVelocity;
@@ -14,6 +15,8 @@ public class BallLogics : MonoBehaviour
 
     void Start()
     {
+        Logics = GameObject.Find("Logics").GetComponent<PongLogics>();
+        speed = Logics.ballSpeed;
         rb = this.GetComponent<Rigidbody2D>();
         startPosition = this.transform.position;
         // Launch();
