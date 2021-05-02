@@ -45,6 +45,7 @@
      <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\WhackAScent\Scripts\WASSpawn.cs" />
      <Compile Include="Assets\Finder\Scripts\PrefabFinderLogics.cs" />
+     <Compile Include="Assets\Jumper\Scripts\JumperObjects.cs" />
      <Compile Include="Assets\Jumper\Scripts\JumperBeamLogics.cs" />
      <Compile Include="Assets\FruitBasket\Scripts\FruitBasketLogics.cs" />
      <Compile Include="Assets\WhackAScent\Scripts\WASObjectLogics.cs" />
@@ -65,7 +66,7 @@
      <Compile Include="Assets\Dodger\Scripts\PrefabDodger.cs" />
      <Compile Include="Assets\Dodger\Scripts\DodgerLogics.cs" />
      <Compile Include="Assets\StartMenu\Scripts\StartMenuLogics.cs" />
-     <Compile Include="Assets\Jumper\Scripts\JumperObjects.cs" />
+     <Compile Include="Assets\Jumper\Scripts\JumperSmellwave.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

@@ -9,8 +9,8 @@ using System.Linq;
 public class UILogics : MonoBehaviour
 {
 
-    // GAME VERSION 1.25
-    //Difficulty addition
+    // GAME VERSION 1.3
+    //Jumper & Finder addition
 
 
     // public GameObject BackBTN;
@@ -64,20 +64,6 @@ public class UILogics : MonoBehaviour
 
     }
 
-    // public void SetLife(int lifeAmount)
-    // {
-    //     life = lifeAmount;
-    //     int count;
-    //     foreach(GameObject child in hearts)
-    //     {
-    //         if(child.activeInHierarchy)
-    //         {
-    //             count++;
-    //             if(count > life) child.SetActive(false);
-    //         }
-    //     }
-        
-    // }
 
     public void SetLife(int lifeAmount)
     {
@@ -99,6 +85,7 @@ public class UILogics : MonoBehaviour
             }
         }
     }
+
 
     IEnumerator RemoveHeart(GameObject heart)
     {
@@ -140,10 +127,20 @@ public class UILogics : MonoBehaviour
         scoreText.text = newScore.ToString();
     }
 
+    public void UpdateScoreJumper(int newScore)
+    {
+        scoreText.text = newScore.ToString() + "/15";
+    }
+
     public void BackBTN()
     {
         SceneManager.LoadScene("StartMenu");
         
+    }
+
+    public void UpdateRound(int round)
+    {
+        timeText.text = round.ToString() + "/5";
     }
 
     public void AnouncementText(string newText)
@@ -153,7 +150,7 @@ public class UILogics : MonoBehaviour
 
     void WhiteText()
     {
-        if(SceneManager.GetActiveScene().name == "Pong" ||SceneManager.GetActiveScene().name == "Finder" )
+        if(SceneManager.GetActiveScene().name == "Pong" ||SceneManager.GetActiveScene().name == "Finder" || SceneManager.GetActiveScene().name == "Jumper" )
         {
             timeText.color = Color.white;
             scoreText.color = Color.white;
@@ -166,7 +163,7 @@ public class UILogics : MonoBehaviour
 
     void NoDifficulty()
     {
-        if(SceneManager.GetActiveScene().name == "Finder" || SceneManager.GetActiveScene().name == "Dodger")
+        if(SceneManager.GetActiveScene().name == "Dodger")
         {
             RedCross.SetActive(true);
         }

@@ -1929,8 +1929,10 @@ MonoBehaviour:
   streak: 0
   numberOfCorrect: 0
   maxCorrect: 0
-  smellTime: 7
-  clickTime: 3
+  round: 0
+  lifes: 0
+  smellTime: 0
+  clickTime: 0
   objectList:
   - {fileID: 1697509198}
   - {fileID: 539812323}
@@ -6268,6 +6270,31 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1457191186073835533, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 254
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649066245995360375, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649066245995360375, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649066245995360375, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649066245995360375, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2008316064931877241, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
       propertyPath: m_IsActive
@@ -6277,6 +6304,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 10.234375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687996665194491665, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687996665194491665, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687996665194491665, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687996665194491665, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687996665194491665, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687996665194491665, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3138920862742218585, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
@@ -6318,6 +6375,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3669408293646247172, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -149
+      objectReference: {fileID: 0}
     - target: {fileID: 3828042308956314515, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -6337,6 +6399,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ContinueBTN
+      objectReference: {fileID: 0}
+    - target: {fileID: 4014706508861793089, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 429
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621968986131829052, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 509
       objectReference: {fileID: 0}
     - target: {fileID: 4678639452552147035, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
@@ -6378,10 +6450,55 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5549383655116511400, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549383655116511400, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549383655116511400, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 644176437}
+    - target: {fileID: 5549383655116511400, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549383655116511400, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CheckDifficulty
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549383655116511400, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: FinderLogics, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549383655116511400, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549383655116511400, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6230092889909992855, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
       propertyPath: m_CullTransparentMesh
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474049885657388637, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6492198394867372476, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
@@ -6493,6 +6610,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -1.4101562
       objectReference: {fileID: 0}
+    - target: {fileID: 6623726037566463478, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709698814012349978, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_text
+      value: 'Round:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709698814012349978, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709698814012349978, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709698814012349978, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709698814012349978, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6778323560209871951, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
       propertyPath: m_Enabled
@@ -6527,6 +6674,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923427487299818376, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_text
+      value: 0/5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923427487299818376, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923427487299818376, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923427487299818376, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923427487299818376, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923427487299818376, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923427487299818376, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928468673314962354, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 349
       objectReference: {fileID: 0}
     - target: {fileID: 7340983687871602118, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
@@ -6563,6 +6750,51 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 644176437}
+    - target: {fileID: 7637310684489728563, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637310684489728563, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637310684489728563, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 644176437}
+    - target: {fileID: 7637310684489728563, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637310684489728563, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CheckDifficulty
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637310684489728563, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: FinderLogics, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637310684489728563, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637310684489728563, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685920903239208927, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -252
+      objectReference: {fileID: 0}
     - target: {fileID: 7900227603678456111, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6617,6 +6849,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BackBTN
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873513789877976423, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873513789877976423, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873513789877976423, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 644176437}
+    - target: {fileID: 8873513789877976423, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873513789877976423, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CheckDifficulty
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873513789877976423, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: FinderLogics, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873513789877976423, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873513789877976423, guid: 7528c1a13daa7e843ade34a454901ad8,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9066597838237948946, guid: 7528c1a13daa7e843ade34a454901ad8,
         type: 3}

@@ -27,13 +27,6 @@ public class FinderLogics : MonoBehaviour
     public Sprite clove;
     public Sprite orange;
 
-    // public Sprite[] coffeeBGlist = new Sprite[4];
-    // public Sprite[] appleBgList = new Sprite[4];
-    // public Sprite[] cloveBgList = new Sprite[2];
-    // public Sprite[] soapBgList = new Sprite[4];
-    // public Sprite[] garlicBgList = new Sprite[4];
-    // public Sprite[] orangeBgList = new Sprite[4];
-
     public List<Sprite> coffeBgList = new List<Sprite>();
     public List<Sprite> appleBgList = new List<Sprite>();
     public List<Sprite> cloveBgList = new List<Sprite>();
@@ -50,6 +43,8 @@ public class FinderLogics : MonoBehaviour
     public int streak;
     public int numberOfCorrect;
     public int maxCorrect;
+    public int round;
+    public int lifes;
     int BGnumber;
     
     public float smellTime;
@@ -63,6 +58,7 @@ public class FinderLogics : MonoBehaviour
     {
         tempList = new List<GameObject>(objectList);
         score = 0;
+        round = 0;
         
     }
 
@@ -70,6 +66,7 @@ public class FinderLogics : MonoBehaviour
     {
         int i = Random.Range(0, maxRange);
         var randomObject = tempList[i].GetComponent<PrefabFinderLogics>();
+        Debug.Log(randomObject.name);
         randomObject.correctPrefab = true;
         randomObject.PrefabSprite(prefab);
         randomObject.prefab = prefab;
@@ -92,35 +89,50 @@ public class FinderLogics : MonoBehaviour
         timeRemaining = 60;
         streak = 1;
         BGnumber=0;
+        lifes = 3;
         StartCoroutine("GameSequence");
-        StartCoroutine("ToggleTimer");
+        // StartCoroutine("ToggleTimer");
         ActivateWalls();
     }
 
     IEnumerator GameSequence()
     {
         while(true){
-            ChangeBackground();
-            blackBG.position = new Vector3(0,11.81f,0);
-            blackBG.DOMove(new Vector3(0,1.72f,0), smellTime, false);
+            
             // background.color = new Color(1,1,1,1);
             // background.DOFade(0,smellTime);
-            startSmelling.Play();
-            AllUnclickable();
-            // ThreeCorrect();
-            CheckCorrect();
-            SelectCorrect(streak);
             // GreenWalls();
+
+            NewRound();
 
             yield return new WaitForSeconds(smellTime);
 
             stopSmelling.Play();
+            blackBG.DOMove(new Vector3(0,11.81f,0), clickTime, false);
             AllClickable();
             AllAnon();
             // RedWalls();
 
             yield return new WaitForSeconds(clickTime);
         }
+    }
+
+    void NewRound()
+    {
+        if(round == 5)
+        {
+            GameOver();
+            return;
+        }
+        round++;
+        UI.UpdateRound(round);
+        ChangeBackground();
+        blackBG.position = new Vector3(0,11.81f,0);
+        blackBG.DOMove(new Vector3(0,1.72f,0), smellTime, false);
+        startSmelling.Play();
+        AllUnclickable();
+        // CheckCorrect();
+        SelectCorrect(maxCorrect);
     }
 
 
@@ -136,6 +148,38 @@ public class FinderLogics : MonoBehaviour
         blackBG.DOMove(new Vector3(0,1,0), smellTime, false);
     }
 
+    public void LoseLife()
+    {
+        lifes--;
+        UI.LoseLife();
+        if(lifes == 0)
+        {
+            GameOver();
+            return;
+        }
+
+    }
+
+    void EasyDifficulty()
+    {
+        maxCorrect = 2;
+        smellTime = 7f;
+        clickTime = 3f;
+    }
+
+    void MediumDifficulty()
+    {
+        maxCorrect = 4;
+        smellTime = 8f;
+        clickTime = 4f;
+    }
+
+    void HardDifficulty()
+    {
+        maxCorrect = 6;
+        smellTime = 9f;
+        clickTime = 5f;
+    }
 
 
     public void GameOver()
@@ -184,27 +228,17 @@ public class FinderLogics : MonoBehaviour
         }
     }
 
-    public void CheckCorrect()
-    {
-        if(numberOfCorrect == maxCorrect)
-        {
-            streak++;
-        } else
-        {
-            streak = 2;
-        }
-        numberOfCorrect = 0;
-        maxCorrect = streak;
-    }
-
-    void ThreeCorrect()
-    {
-        tempList = new List<GameObject>(objectList);
-        AllBlank();
-        RandomCorrect(objectList.Count);
-        RandomCorrect(objectList.Count -1);
-        RandomCorrect(objectList.Count -2);
-    }
+    // public void CheckCorrect()
+    // {
+    //     if(numberOfCorrect == maxCorrect)
+    //     {
+    //         streak++;
+    //     } else
+    //     {
+    //         streak = 0;
+    //     }
+    //     numberOfCorrect = 0;
+    // }
 
     void SelectCorrect(int amountCorrect)
     {
@@ -289,5 +323,11 @@ public class FinderLogics : MonoBehaviour
         }
     }
 
+    public void CheckDifficulty()
+    {
+        if(ScentOptionScript.easySelected) EasyDifficulty();
+        if (ScentOptionScript.mediuSelected) MediumDifficulty();
+        if (ScentOptionScript.hardSelected) HardDifficulty();
+    }
 
 }

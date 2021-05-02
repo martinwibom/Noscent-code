@@ -18,25 +18,37 @@ public class JumperBeamLogics : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        // Debug.Log("Player entered " + this.name);
-        if(other.gameObject.CompareTag("Player")) playerInBeam = true;
-    }
+    // private void OnTriggerEnter2D(Collider2D other) {
+    //     // Debug.Log("Player entered " + this.name);
+    //     if(other.gameObject.CompareTag("Player")) playerInBeam = true;
+    // }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) playerInBeam = false;
-        // Debug.Log("Player left " + this.name);
-    }
+    // private void OnTriggerExit2D(Collider2D other) {
+    //     if(other.gameObject.CompareTag("Player")) playerInBeam = false;
+    //     // Debug.Log("Player left " + this.name);
+    // }
 
     public void ChangeBeam(bool flag)
     {
         powerBeam = flag;
-        if(powerBeam) beam.color = blueBeam;
-        else beam.color = redBeam;
+        // if(powerBeam) beam.color = blueBeam;
+        // else beam.color = redBeam;
     }
 
     private void Update() {
-        if(powerBeam && playerInBeam && !Logics.pointMultiplier) Logics.pointMultiplier = true;
-        if(Logics.pointMultiplier && !powerBeam || !playerInBeam) Logics.pointMultiplier = false;
+        if(Logics.gamePlaying)
+        {
+            if(powerBeam && playerInBeam)
+            {
+                Logics.playerInBeam = true;
+                Debug.Log("Point multiplier activated");
+            }
+
+            if(Logics.playerInBeam && !powerBeam || !playerInBeam)
+            {
+                Logics.playerInBeam = false;
+                Logics.PlayerLogics.smelling = false;
+            }
+        }
     }
 }

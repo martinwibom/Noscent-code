@@ -46,7 +46,8 @@ public class PrefabFinderLogics : MonoBehaviour
             } else
             {
                 WrongSprite();
-                Logics.UpdateScore(-1);
+                // Logics.UpdateScore(-1);
+                Logics.LoseLife();
             }
         }
     }

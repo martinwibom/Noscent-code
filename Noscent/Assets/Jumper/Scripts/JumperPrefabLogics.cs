@@ -34,12 +34,14 @@ public class JumperPrefabLogics : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && !hit)
         {
             Debug.Log("Player lost");
-            Logics.StartCoroutine("ObstacleHit");
+            Logics.StartCoroutine("ObstacleHitNew");
             hit = true;
         } else if (collision.gameObject.CompareTag("Goal"))
         {
             // if(!hit) Logics.AddScore();
             Destroy(this.gameObject);
         }
+        else return;
+
     }
 }

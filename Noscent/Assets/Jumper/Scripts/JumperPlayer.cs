@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JumperPlayer : MonoBehaviour
-{
-    private Rigidbody2D rb;
-    private float jumpHeight = 10f;
+{   
+    public JumperLogics Logics;
+    Rigidbody2D rb;
+    float jumpHeight = 12f;
+
+    public GameObject smellWave;
+    public GameObject nose;
     
     public bool paused;
+    public bool smelling;
     bool leftLane;
     bool middleLane;
     bool rightLane;
@@ -16,9 +21,9 @@ public class JumperPlayer : MonoBehaviour
 
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         paused = true;
-        startPos = this.transform.position;
+        startPos = transform.position;
         middleLane = true;
     }
 
@@ -42,6 +47,21 @@ public class JumperPlayer : MonoBehaviour
         leftLane = false;
     }
 
+    IEnumerator PlayerSmelling()
+    {
+        Debug.Log("PlayerSmelling started");
+        while (true)
+        {
+            yield return new WaitForSeconds(3f);
+            if(smelling) SpawnSmellWave();
+        }
+    }
+
+    void SpawnSmellWave()
+    {
+        GameObject score = Instantiate(smellWave, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        score.transform.SetParent(nose.transform);
+    }
 
     void Update()
     {
@@ -54,18 +74,21 @@ public class JumperPlayer : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.D)) if(rightLane || middleLane) transform.position = new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z);
             }
 
-            if(transform.position.x == 0)
+            if(transform.position.x > -0.1f && transform.position.x < 0.1f)
             {
                 allLaneFalse();
                 middleLane = true;
-            } else if (transform.position.x == -2)
+                Logics.UpdatePlayerPosition(1);
+            } else if (transform.position.x > -1.1f && transform.position.x < -0.9f)
             {
                 allLaneFalse();
                 leftLane = true;
-            } else if (transform.position.x == 2)
+                Logics.UpdatePlayerPosition(0);
+            } else if (transform.position.x > 0.9f && transform.position.x < 1.1f)
             {
                 allLaneFalse();
                 rightLane = true;
+                Logics.UpdatePlayerPosition(2);
             }
         }
     }

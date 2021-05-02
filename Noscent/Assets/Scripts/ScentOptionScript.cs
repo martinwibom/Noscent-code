@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScentOptionScript : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class ScentOptionScript : MonoBehaviour
     public bool easySelected;
     public bool mediuSelected;
     public bool hardSelected;
+    public bool difficultySelected;
 
     string scentText;
 
@@ -110,6 +112,7 @@ public class ScentOptionScript : MonoBehaviour
     public void DifficultySelection(Image caller)
     {
         allDifficultyWhite();
+        difficultySelected = true;
         caller.color = new Color32(37,188,42,100);
         if(caller.name == "Easy")
         {
@@ -128,11 +131,20 @@ public class ScentOptionScript : MonoBehaviour
     
     public void ContinueBTN()
     {
-        if(scentSelected)
+        if(scentSelected && difficultySelected)
         {
             PlayPanel.SetActive(true);
             PlayPanel.GetComponent<PlayPanelScript>().UpdateScentText(scentText);
             this.gameObject.SetActive(false);
+        }
+        if(SceneManager.GetActiveScene().name == "Dodger")
+        {
+            if(scentSelected)
+            {
+                PlayPanel.SetActive(true);
+                PlayPanel.GetComponent<PlayPanelScript>().UpdateScentText(scentText);
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }
