@@ -61,9 +61,9 @@ public class HowToPlayScript : MonoBehaviour
 
     void JumperText()
     {
-        igoText.text = "Jumper over as many objects as possible during one minute.";
-        controlText.text = "Use space bar to jump with your player.";
-        stText.text = "Select the scent in-game that you will be smelling during the game. \nHold the scent material under your nose and smell it throughout the gameplay.";
+        igoText.text = "Move the scent waves so it is positioned above the scent vial to allow the man to sniff the scent. Meanwhile, avoid the clouds by staying put or jumping over them";
+        controlText.text = "Use arrow keys or ADW to move the character and jump.";
+        stText.text = "Select the scent in-game that you will be smelling during the game. \nHold the scent material under your nose and move it with the scent vial. \nIf the scent vial is to the... \nLeft side = Hold the scent material under your left nostril. \nRight side = Hold the scent material under your right nostril. \nMiddle  = Hold the scent material under both nostrils. \nCopy how the man is smelling and remember to think about what you're smelling!";
     }
 
     void PongerText()
@@ -82,9 +82,9 @@ public class HowToPlayScript : MonoBehaviour
 
     void FinderText()
     {
-        igoText.text ="Remember the position of the scent material and click it once the squares go blank. Everytime you get all guesses right, you’ll have an additional one to remember next turn. Try and get as high score as possible.";
+        igoText.text ="Remember the position of the scent material and click it once the squares go blank.";
         controlText.text = "Use your mouse to click the white squares.";
-        stText.text = "Select the scent in-game that you will be smelling during the game. \nWhen you are in the “remembering-phase” of the game, smell your scent material. When you are going to click the empty white squares, stop smelling. \nResume smelling when you are in the “remembering-phase”.";
+        stText.text = "Select the scent in-game that you will be smelling during the game. \nWhen you are in the “remembering-phase” of the game, smell your scent material. When you are going to click the empty white squares, stop smelling. \nResume smelling when you are in the “remembering-phase”.\nFollow the voice instructions when to smell and remember to think about what you're smelling!";
     }
 
  

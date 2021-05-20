@@ -13,11 +13,11 @@ public class JumperLogics : MonoBehaviour
     public GameObject scorePrefab;
     public GameObject wind;
     public GameObject prefab;
-    public Sprite apple;
+    public Sprite rose;
     public Sprite garlic;
     public Sprite soap;
     public Sprite coffee;
-    public Sprite clove;
+    public Sprite vanilla;
     public Sprite orange;
     
     public SpriteRenderer jarPic;
@@ -104,17 +104,18 @@ public class JumperLogics : MonoBehaviour
         PlayerLogics.paused = false;
         StartCoroutine("GameSequence");
         // StartCoroutine("ToggleTimer");
+        playerInBeam = true;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2.5f);
 
         StartCoroutine("ChangeBeam");
 
         yield break;
     }
 
-    void GameOver(string text)
+    void GameOver(bool won)
     {
-        StopClouds();
+        // StopClouds();
         prefabSpeed = 0f;
         StopCoroutine("ChangeBeam");
         PlayerLogics.StopAllCoroutines();
@@ -122,10 +123,12 @@ public class JumperLogics : MonoBehaviour
         StopCoroutine("RandomScoreSpawn");
         FreezeObstacles();
         PlayerLogics.FreezePlayer();
-        UI.AnouncementText(text);
+        // UI.AnnouncementText(text);
+        if(won) UI.YouWon();
+        else UI.GameOver();
         if(obstacleHitBool)
         {
-            StopCoroutine("ObstacleHit");
+            StopCoroutine("ObstacleHitNew");
             UI.StopCoroutine("TwoSeconds");
         }
     }
@@ -162,7 +165,7 @@ public class JumperLogics : MonoBehaviour
     {
         life--;
         UI.LoseLife();
-        if(life == 0) GameOver("Game over");
+        if(life == 0) GameOver(false);
     }
 
 
@@ -236,7 +239,7 @@ public class JumperLogics : MonoBehaviour
         score++;
         // if(playerInBeam) score++;
         UI.UpdateScoreJumper(score);
-        if(score >= scoreGoal) GameOver("You won!");
+        if(score >= scoreGoal) GameOver(true);
     }
 
 
@@ -281,7 +284,7 @@ public class JumperLogics : MonoBehaviour
 
         FreezeObstacles();
         StopClouds();
-        UI.AnouncementText("PLAYER HIT!");
+        UI.AnnouncementText("PLAYER HIT!");
         UI.StartCoroutine("TwoSeconds");
         PlayerLogics.FreezePlayer();
         StopCoroutine("RandomObstacleSpawn");
@@ -289,7 +292,7 @@ public class JumperLogics : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        UI.AnouncementText("");
+        UI.AnnouncementText("");
         UnfreezeObstacles();
         MoveClouds();
         PlayerLogics.UnfreezePlayer();
@@ -305,29 +308,38 @@ public class JumperLogics : MonoBehaviour
         if(life == 0) yield break;
 
         obstacleHitBool = true;
-        UI.AnouncementText("Scent blown away!");
+        UI.AnnouncementText("Scent blown away!");
         // PlayerLogics.smelling= false;
         PlayerLogics.StopCoroutine("PlayerSmelling");
         var PlayerSprite =  PlayerLogics.gameObject.GetComponent<SpriteRenderer>();
         PlayerLogics.gameObject.tag ="Untagged";
-        PlayerSprite.enabled = false;
+
+        // PlayerSprite.enabled = false;
+        PlayerSprite.color = new Color(1f,1f,1f,.5f);
 
         yield return new WaitForSeconds(0.5f);
-        PlayerSprite.enabled = true;
+        // PlayerSprite.enabled = true;
+        PlayerSprite.color = new Color(1f,1f,1f,1f);
+        
 
         yield return new WaitForSeconds(0.5f);
-        PlayerSprite.enabled = false;
+        // PlayerSprite.enabled = false;
+        PlayerSprite.color = new Color(1f,1f,1f,.5f);
 
         yield return new WaitForSeconds(0.5f);
-        PlayerSprite.enabled = true;
+        // PlayerSprite.enabled = true;
+        PlayerSprite.color = new Color(1f,1f,1f,1f);
 
         yield return new WaitForSeconds(0.5f);
-        PlayerSprite.enabled = false;
+        // PlayerSprite.enabled = false;
+        PlayerSprite.color = new Color(1f,1f,1f,.5f);
+
 
         yield return new WaitForSeconds(0.5f);
-        PlayerSprite.enabled = true;
+        // PlayerSprite.enabled = true;
+        PlayerSprite.color = new Color(1f,1f,1f,1f);
 
-        UI.AnouncementText("");
+        UI.AnnouncementText("");
         // PlayerLogics.smelling = true;
         PlayerLogics.StartCoroutine("PlayerSmelling");
         PlayerLogics.gameObject.tag ="Player";
@@ -455,7 +467,7 @@ public class JumperLogics : MonoBehaviour
 
                 timeRemaining--;
             } else {   
-                GameOver("You won!");
+                GameOver(true);
                 yield break;
             }
         }
@@ -463,23 +475,23 @@ public class JumperLogics : MonoBehaviour
 
     public void CheckScent()
     {
-        if(ScentOptionScript.appleSelected)
+        if(ScentOptionScript.roseSelected)
         {
-            // prefab = apple;
-            jarPic.sprite = apple;
-            jarPic.transform.localScale = new Vector3(3.5f, 3.5f, 1);
-        } else if (ScentOptionScript.cloveSelected)
+            // prefab = rose;
+            jarPic.sprite = rose;
+            jarPic.transform.localScale = new Vector3(0.8f, 0.8f, 1);
+        } else if (ScentOptionScript.vanillaSelected)
         {
-            jarPic.sprite = clove;
-            jarPic.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            jarPic.sprite = vanilla;
+            jarPic.transform.localScale = new Vector3(0.8f, 0.8f, 1);
         } else if (ScentOptionScript.coffeeSelected)
         {
             jarPic.sprite = coffee;
-            jarPic.transform.localScale = new Vector3(3.0f, 3.0f, 1);
+            jarPic.transform.localScale = new Vector3(0.8f, 0.8f, 1);
         } else if (ScentOptionScript.garlicSelected)
         {
             jarPic.sprite = garlic;
-            jarPic.transform.localScale = new Vector3(2.0f, 2.0f, 1);
+            jarPic.transform.localScale = new Vector3(0.8f, .8f, 1);
         } else if (ScentOptionScript.orangeSelected)
         {
             jarPic.sprite = orange;
@@ -487,7 +499,7 @@ public class JumperLogics : MonoBehaviour
         } else if (ScentOptionScript.soapSelected)
         {
             jarPic.sprite = soap;
-            jarPic.transform.localScale = new Vector3(1.8f, 1.8f, 1);
+            jarPic.transform.localScale = new Vector3(.8f, .8f, 1);
         }
         prefab = wind;
     }

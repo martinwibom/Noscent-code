@@ -213,6 +213,7 @@ MonoBehaviour:
   correctPrefab: 0
   clickable: 0
   sr: {fileID: 8230390143639231611}
+  bg: {fileID: 355782722744411378}
   prefab: {fileID: 0}
   wrong: {fileID: 21300000, guid: a66e221e2bf61824f965cca4a67d6d25, type: 3}
 --- !u!61 &123944648014692029

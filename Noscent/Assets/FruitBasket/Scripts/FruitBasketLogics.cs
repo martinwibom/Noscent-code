@@ -15,11 +15,11 @@ public class FruitBasketLogics : MonoBehaviour
     public GameObject playPanel;
     public GameObject obstacles;
     public GameObject prefab;
-    public GameObject apple;
+    public GameObject rose;
     public GameObject garlic;
     public GameObject soap;
     public GameObject coffee;
-    public GameObject clove;
+    public GameObject vanilla;
     public GameObject orange;
 
     public GameObject player;
@@ -75,7 +75,7 @@ public class FruitBasketLogics : MonoBehaviour
         FreezeObstacles();
         PlayerLogics.FreezePlayer();
         StopCoroutine("GameSequence");
-        UI.AnouncementText("Game Over");
+        UI.AnnouncementText("Game Over");
     }
 
     void FreezeObstacles()
@@ -158,12 +158,12 @@ public class FruitBasketLogics : MonoBehaviour
 
     public void CheckScent()
     {
-        if(ScentOptionScript.appleSelected)
+        if(ScentOptionScript.roseSelected)
         {
-            prefab = apple;
-        } else if (ScentOptionScript.cloveSelected)
+            prefab = rose;
+        } else if (ScentOptionScript.vanillaSelected)
         {
-            prefab = clove;
+            prefab = vanilla;
         } else if (ScentOptionScript.coffeeSelected)
         {
             prefab = coffee;

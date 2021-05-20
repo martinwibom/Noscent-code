@@ -39,6 +39,7 @@
      <Compile Include="Assets\Scripts\Countdown.cs" />
      <Compile Include="Assets\Pong\Scripts\BallLogics.cs" />
      <Compile Include="Assets\Jumper\Scripts\JumperLogics.cs" />
+     <Compile Include="Assets\Jumper\Scripts\JumperSmellwave.cs" />
      <Compile Include="Assets\FruitBasket\Scripts\FBFLoorLogics.cs" />
      <Compile Include="Assets\Jumper\Scripts\JumperSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayPanelScript.cs" />
@@ -66,7 +67,7 @@
      <Compile Include="Assets\Dodger\Scripts\PrefabDodger.cs" />
      <Compile Include="Assets\Dodger\Scripts\DodgerLogics.cs" />
      <Compile Include="Assets\StartMenu\Scripts\StartMenuLogics.cs" />
-     <Compile Include="Assets\Jumper\Scripts\JumperSmellwave.cs" />
+     <Compile Include="Assets\Scripts\Hearts.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

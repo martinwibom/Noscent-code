@@ -3883,12 +3883,12 @@ MonoBehaviour:
     type: 3}
   wind: {fileID: 3931751870811548119, guid: 6990cb8b42af9c84a869985452e3f7c5, type: 3}
   prefab: {fileID: 0}
-  apple: {fileID: 21300000, guid: 04ce47891bb987e43960cbb9057fdaa8, type: 3}
-  garlic: {fileID: 21300000, guid: 102ec14c3b296664c86e0eabe9b5066f, type: 3}
-  soap: {fileID: 21300000, guid: 1eb43c832f59fd14f96f67ede5a3c515, type: 3}
-  coffee: {fileID: 21300000, guid: b1f22aa6d46ac12408f790df39843895, type: 3}
-  clove: {fileID: 21300000, guid: ef8d52b3021718340a3670c3c25fb3e6, type: 3}
-  orange: {fileID: 21300000, guid: 86cb0c416853f9645aa80162d70523d3, type: 3}
+  rose: {fileID: 21300000, guid: 0358889e52c33ad48a0d3b6b68fdf50f, type: 3}
+  garlic: {fileID: 21300000, guid: 5425953915985284d8f7dbb0917a1700, type: 3}
+  soap: {fileID: 21300000, guid: 99d0ad9006878e141a3bc9c94b6194e0, type: 3}
+  coffee: {fileID: 21300000, guid: 7220345f32443334eba68e56c9cf5997, type: 3}
+  vanilla: {fileID: 21300000, guid: c6c9397b8b7c8854facaf6357dc00c3b, type: 3}
+  orange: {fileID: 21300000, guid: f1ad60e63fd30a149a0b39b25facef0b, type: 3}
   jarPic: {fileID: 1958267653}
   snifflesList:
   - {fileID: 296484274}

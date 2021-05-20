@@ -19,11 +19,11 @@ public class DodgerLogics : MonoBehaviour
     public GameObject playPanel;
     public GameObject obstacles;
     public GameObject prefab;
-    public GameObject apple;
+    public GameObject rose;
     public GameObject garlic;
     public GameObject soap;
     public GameObject coffee;
-    public GameObject clove;
+    public GameObject vanilla;
     public GameObject orange;
 
     public GameObject goal;
@@ -54,7 +54,7 @@ public class DodgerLogics : MonoBehaviour
         // StopCoroutine("RandomSpawn");
         FreezeObjects();
         PlayerLogics.FreezePlayer();
-        UI.AnouncementText("CRASHED");
+        UI.AnnouncementText("CRASHED");
         UI.StartCoroutine("TwoSeconds");
         StopCoroutine("GameStopwatch");
         StopCoroutine("RandomSpawn");
@@ -65,7 +65,7 @@ public class DodgerLogics : MonoBehaviour
         StartCoroutine("GameStopwatch");
         StartCoroutine("RandomSpawn");
         UnfreezeObjects();
-        UI.AnouncementText("");
+        UI.AnnouncementText("");
         UI.StopCoroutine("TwoSeconds");
         UI.cdText.text = "";
         PlayerLogics.UnfreezePlayer();
@@ -92,18 +92,18 @@ public class DodgerLogics : MonoBehaviour
         StopCoroutine("Stopwatch");
         StopCoroutine("RandomSpawn");
         PlayerLogics.FreezePlayer();
-        UI.AnouncementText("You won!");
+        UI.AnnouncementText("You won!");
     }
 
 
     public void CheckScent()
     {
-        if(ScentOptionScript.appleSelected)
+        if(ScentOptionScript.roseSelected)
         {
-            prefab = apple;
-        } else if (ScentOptionScript.cloveSelected)
+            prefab = rose;
+        } else if (ScentOptionScript.vanillaSelected)
         {
-            prefab = clove;
+            prefab = vanilla;
         } else if (ScentOptionScript.coffeeSelected)
         {
             prefab = coffee;
@@ -212,22 +212,22 @@ public class DodgerLogics : MonoBehaviour
     {
         SpawnObject(middleLane);
         SpawnObject(rightLane);
-        // Instantiate(apple,middleLane, Quaternion.identity);
-        // Instantiate(apple,rightLane, Quaternion.identity);
+        // Instantiate(rose,middleLane, Quaternion.identity);
+        // Instantiate(rose,rightLane, Quaternion.identity);
     }
     void SpawnObjectMiddle()
     {
         SpawnObject(leftLane);
         SpawnObject(rightLane);
-        // Instantiate(apple,leftLane, Quaternion.identity);
-        // Instantiate(apple,rightLane, Quaternion.identity);
+        // Instantiate(rose,leftLane, Quaternion.identity);
+        // Instantiate(rose,rightLane, Quaternion.identity);
     }
     void SpawnObjectRight()
     {
         SpawnObject(leftLane);
         SpawnObject(middleLane);
-        // Instantiate(apple,leftLane, Quaternion.identity);
-        // Instantiate(apple,middleLane, Quaternion.identity);
+        // Instantiate(rose,leftLane, Quaternion.identity);
+        // Instantiate(rose,middleLane, Quaternion.identity);
     }
 
 

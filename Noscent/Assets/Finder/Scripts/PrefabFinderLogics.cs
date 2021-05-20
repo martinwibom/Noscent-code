@@ -8,8 +8,10 @@ public class PrefabFinderLogics : MonoBehaviour
 
     public bool correctPrefab;
     public bool clickable;
+    public bool clicked;
 
     public SpriteRenderer sr;
+    public SpriteRenderer bg;
 
     public Sprite prefab;
     // public Sprite blank;
@@ -42,10 +44,12 @@ public class PrefabFinderLogics : MonoBehaviour
                 Debug.Log("CORRECT!!");
                 PrefabSprite(prefab);
                 Logics.UpdateScore(1);
+                // Logics.UpdateStreak(true);
                 Logics.numberOfCorrect++;
             } else
             {
                 WrongSprite();
+                // Logics.UpdateStreak(false);
                 // Logics.UpdateScore(-1);
                 Logics.LoseLife();
             }
@@ -56,6 +60,21 @@ public class PrefabFinderLogics : MonoBehaviour
     // {
     //     sr.sprite = anon;
     // }
+    public void GreenBG()
+    {
+        bg.color = Color.green;
+    }
+
+    public void RedBG()
+    {
+        bg.color = Color.red;
+    }
+
+    public void WhiteBG()
+    {
+        bg.color = Color.white;
+    }
+
     public void BlankSprite()
     {
         sr.sprite = null;

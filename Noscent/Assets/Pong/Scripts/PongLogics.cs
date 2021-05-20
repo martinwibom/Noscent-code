@@ -12,11 +12,11 @@ public class PongLogics : MonoBehaviour
     public PlayPanelScript PlayPanelScript;
     
     public GameObject prefab;
-    public GameObject apple;
+    public GameObject rose;
     public GameObject garlic;
     public GameObject soap;
     public GameObject coffee;
-    public GameObject clove;
+    public GameObject vanilla;
     public GameObject orange;
 
     public GameObject spawnPoint;
@@ -125,7 +125,7 @@ public class PongLogics : MonoBehaviour
     {
         BallLogics.Pause();
         PlayerLogics.paused = true;
-        UI.AnouncementText("Game Over");
+        UI.AnnouncementText("Game Over");
     }
 
     
@@ -202,14 +202,14 @@ public class PongLogics : MonoBehaviour
 
     public void CheckScent()
     {
-        if(ScentOptionScript.appleSelected)
+        if(ScentOptionScript.roseSelected)
         {
-            prefab = apple;
+            prefab = rose;
             SpawnBall();
 
-        } else if (ScentOptionScript.cloveSelected)
+        } else if (ScentOptionScript.vanillaSelected)
         {
-            prefab = clove;
+            prefab = vanilla;
             SpawnBall();
 
         } else if (ScentOptionScript.coffeeSelected)

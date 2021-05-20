@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
@@ -21,12 +22,15 @@ public class UILogics : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI panelTitle;
+    public TextMeshProUGUI endText;
+    public TextMeshProUGUI endTextSmall;
     public GameObject htpPanel;
     public GameObject RedCross;
+    public GameObject BlackBox;
 
     public GameObject[] hearts = new GameObject[5];
 
-    public int life;
+    public int lifes;
 
     
 
@@ -64,6 +68,30 @@ public class UILogics : MonoBehaviour
 
     }
 
+    public void GameOver()
+    {
+        // endText.enabled = true;
+        BlackBox.SetActive(true);
+        // endText.gameObject.SetActive(true);
+        // endTextSmall.gameObject.SetActive(true);
+        // endTextSmall.enabled = true;
+        endText.text = "GAME OVER!";
+        endTextSmall.text = "NO MORE LIFES";
+    }
+    
+    public void YouWon()
+    {
+        // endText.enabled = true;
+        // endTextSmall.enabled = true;
+        // endText.gameObject.SetActive(true);
+        // endTextSmall.gameObject.SetActive(true);
+        BlackBox.SetActive(true);
+        endText.text = "YOU WON!";
+        endTextSmall.text = "CONGRATULATIONS";
+        endText.color = Color.green;
+        endTextSmall.color = Color.green;
+    }
+
 
     public void SetLife(int lifeAmount)
     {
@@ -76,11 +104,14 @@ public class UILogics : MonoBehaviour
 
     public void LoseLife()
     {
+
         foreach(GameObject heart in hearts.Reverse())
         {
-            if(heart.activeInHierarchy == true)
+            if(heart.GetComponent<Hearts>().heartActive)
             {
+                heart.GetComponent<Hearts>().heartActive = false;
                 StartCoroutine("RemoveHeart", heart);
+                // AnnouncementText(anoText);
                 return;
             }
         }
@@ -89,23 +120,31 @@ public class UILogics : MonoBehaviour
 
     IEnumerator RemoveHeart(GameObject heart)
     {
+        // heart.SetActive(false);
+        heart.GetComponent<Image>().color = new Color(1,1,1,0);
+
+        yield return new WaitForSeconds(0.5f);
+
+        // heart.SetActive(true);
+        heart.GetComponent<Image>().color = new Color(1,1,1,1);
+
+
+        yield return new WaitForSeconds(0.5f);
+
+        // heart.SetActive(false);
+        heart.GetComponent<Image>().color = new Color(1,1,1,0);
+
+        yield return new WaitForSeconds(0.5f);
+
+        // heart.SetActive(true);
+        heart.GetComponent<Image>().color = new Color(1,1,1,1);
+    
+
+        yield return new WaitForSeconds(0.5f);
+
         heart.SetActive(false);
+        heart.GetComponent<Image>().color = new Color(1,1,1,0);
 
-        yield return new WaitForSeconds(0.5f);
-
-        heart.SetActive(true);
-
-        yield return new WaitForSeconds(0.5f);
-
-        heart.SetActive(false);
-
-        yield return new WaitForSeconds(0.5f);
-
-        heart.SetActive(true);
-
-        yield return new WaitForSeconds(0.5f);
-
-        heart.SetActive(false);
     }
 
     public IEnumerator SelectedScent(string scent)
@@ -143,9 +182,16 @@ public class UILogics : MonoBehaviour
         timeText.text = round.ToString() + "/5";
     }
 
-    public void AnouncementText(string newText)
+    public void AnnouncementText(string newText)
     {
         anoText.text = newText;
+        StartCoroutine("RemoveAnonText");
+    }
+
+    IEnumerator RemoveAnonText()
+    {
+        yield return new WaitForSeconds(2f);
+        AnnouncementText("");
     }
 
     void WhiteText()

@@ -8,8 +8,8 @@ public class ScentOptionScript : MonoBehaviour
 {
     public GameObject PlayPanel;
 
-    public Image appleBTN;
-    public Image cloveBTN;
+    public Image roseBTN;
+    public Image vanillaBTN;
     public Image coffeeBTN;
     public Image garlicBTN;
     public Image orangeBTN;
@@ -19,8 +19,8 @@ public class ScentOptionScript : MonoBehaviour
     public Image mediumBTN;
     public Image hardBTN;
 
-    public bool appleSelected;
-    public bool cloveSelected;
+    public bool roseSelected;
+    public bool vanillaSelected;
     public bool coffeeSelected;
     public bool garlicSelected;
     public bool orangeSelected;
@@ -37,8 +37,8 @@ public class ScentOptionScript : MonoBehaviour
 
     void allScentWhite()
     {
-        appleBTN.color = Color.white;
-        cloveBTN.color = Color.white;
+        roseBTN.color = Color.white;
+        vanillaBTN.color = Color.white;
         coffeeBTN.color = Color.white;
         garlicBTN.color = Color.white;
         orangeBTN.color = Color.white;
@@ -55,8 +55,8 @@ public class ScentOptionScript : MonoBehaviour
     
     void allScentFalse()
     {
-        appleSelected = false;
-        cloveSelected = false;
+        roseSelected = false;
+        vanillaSelected = false;
         coffeeSelected = false;
         garlicSelected = false;
         orangeSelected = false;
@@ -75,17 +75,17 @@ public class ScentOptionScript : MonoBehaviour
         allScentWhite();
         caller.color = new Color32(37,188,42, 100);
         scentSelected = true;
-        if(caller.name == "Apple")
+        if(caller.name == "Rose")
         {
             allScentFalse();
-            appleSelected = true;
-            scentText = "Apple";
-            Debug.Log(appleSelected);
-        } else if (caller.name == "Clove")
+            roseSelected = true;
+            scentText = "Rose";
+            Debug.Log(roseSelected);
+        } else if (caller.name == "Vanilla")
         {
             allScentFalse();
-            cloveSelected = true;
-            scentText = "Clove";
+            vanillaSelected = true;
+            scentText = "Vanilla";
         } else if (caller.name == "Coffee")
         {
             allScentFalse();

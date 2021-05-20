@@ -6,7 +6,7 @@ public class JumperPlayer : MonoBehaviour
 {   
     public JumperLogics Logics;
     Rigidbody2D rb;
-    float jumpHeight = 12f;
+    float jumpHeight = 12.5f;
 
     public GameObject smellWave;
     public GameObject nose;
@@ -70,8 +70,8 @@ public class JumperPlayer : MonoBehaviour
             if(this.transform.position.y <= startPos.y + 0.2f)
             {
                 if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space) ||Input.GetKeyDown(KeyCode.UpArrow)) rb.velocity = new Vector2(0.0f, 1f * jumpHeight);
-                if (Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.A) ) if(leftLane || middleLane) transform.position = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
-                if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.D)) if(rightLane || middleLane) transform.position = new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z);
+                if (Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D) ) if(leftLane || middleLane) transform.position = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
+                if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) if(rightLane || middleLane) transform.position = new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z);
             }
 
             if(transform.position.x > -0.1f && transform.position.x < 0.1f)

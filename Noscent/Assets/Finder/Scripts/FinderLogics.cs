@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using DG.Tweening;
+using TMPro;
 
 public class FinderLogics : MonoBehaviour
 {
@@ -10,30 +11,30 @@ public class FinderLogics : MonoBehaviour
     public ScentOptionScript ScentOptionScript;
     public PlayPanelScript PlayPanelScript;
 
-    public GameObject topWall;
-    public GameObject bottomWall;
-    public GameObject rightWall;
-    public GameObject leftWall;
+    // public GameObject topWall;
+    // public GameObject bottomWall;
+    // public GameObject rightWall;
+    // public GameObject leftWall;
+
 
     public AudioSource startSmelling;
     public AudioSource stopSmelling;
 
-    public GameObject objects;
     public Sprite prefab;
-    public Sprite apple;
+    public Sprite rose;
     public Sprite garlic;
     public Sprite soap;
     public Sprite coffee;
-    public Sprite clove;
+    public Sprite vanilla;
     public Sprite orange;
 
     public List<Sprite> coffeBgList = new List<Sprite>();
-    public List<Sprite> appleBgList = new List<Sprite>();
-    public List<Sprite> cloveBgList = new List<Sprite>();
+    public List<Sprite> roseBgList = new List<Sprite>();
+    public List<Sprite> vanillaBgList = new List<Sprite>();
     public List<Sprite> soapBgList = new List<Sprite>();
     public List<Sprite> orangeBgList = new List<Sprite>();
     public List<Sprite> garlicBgList = new List<Sprite>();
-    public List<Sprite> gameBgList;
+    List<Sprite> gameBgList;
 
     public SpriteRenderer background;
     public Transform blackBG;
@@ -52,6 +53,7 @@ public class FinderLogics : MonoBehaviour
 
     public List<GameObject> objectList = new List<GameObject>();
     List<GameObject> tempList;
+    List<GameObject> correctList;
     
 
     void Start()
@@ -66,6 +68,7 @@ public class FinderLogics : MonoBehaviour
     {
         int i = Random.Range(0, maxRange);
         var randomObject = tempList[i].GetComponent<PrefabFinderLogics>();
+        // correctList.Add(tempList[i]);
         Debug.Log(randomObject.name);
         randomObject.correctPrefab = true;
         randomObject.PrefabSprite(prefab);
@@ -87,12 +90,12 @@ public class FinderLogics : MonoBehaviour
         yield return new WaitForSeconds (3);
 
         timeRemaining = 60;
-        streak = 1;
+        streak = 0;
         BGnumber=0;
         lifes = 3;
         StartCoroutine("GameSequence");
         // StartCoroutine("ToggleTimer");
-        ActivateWalls();
+        // ActivateWalls();
     }
 
     IEnumerator GameSequence()
@@ -108,12 +111,18 @@ public class FinderLogics : MonoBehaviour
             yield return new WaitForSeconds(smellTime);
 
             stopSmelling.Play();
+            UI.AnnouncementText("CLICK!");
+            UI.anoText.color = Color.green;
             blackBG.DOMove(new Vector3(0,11.81f,0), clickTime, false);
             AllClickable();
             AllAnon();
             // RedWalls();
 
             yield return new WaitForSeconds(clickTime);
+            CheckCorrect();
+            UI.anoText.color = Color.green;
+            // EndRound();
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -121,7 +130,7 @@ public class FinderLogics : MonoBehaviour
     {
         if(round == 5)
         {
-            GameOver();
+            GameOver(true);
             return;
         }
         round++;
@@ -131,9 +140,21 @@ public class FinderLogics : MonoBehaviour
         blackBG.DOMove(new Vector3(0,1.72f,0), smellTime, false);
         startSmelling.Play();
         AllUnclickable();
-        // CheckCorrect();
         SelectCorrect(maxCorrect);
     }
+
+    // void EndRound()
+    // {
+    //     foreach (GameObject item in correctList)
+    //     {
+    //         var itemLogics = item.GetComponent<PrefabFinderLogics>();
+    //         if(itemLogics.correctPrefab)
+    //         {
+    //             itemLogics.RedBG();
+    //             itemLogics.PrefabSprite(prefab);
+    //         }
+    //     }
+    // }
 
 
     void ChangeBackground()
@@ -152,9 +173,10 @@ public class FinderLogics : MonoBehaviour
     {
         lifes--;
         UI.LoseLife();
+        UI.AnnouncementText("LIFE LOST!");
         if(lifes == 0)
         {
-            GameOver();
+            GameOver(false);
             return;
         }
 
@@ -182,11 +204,13 @@ public class FinderLogics : MonoBehaviour
     }
 
 
-    public void GameOver()
+    public void GameOver(bool won)
     {
         StopCoroutine("GameSequence");
         AllUnclickable();
-        UI.AnouncementText("Game over!");
+        // UI.AnnouncementText(announcementText);
+        if(won) UI.YouWon();
+        else UI.GameOver();
     }
 
     public void UpdateScore(int newScore)
@@ -194,6 +218,19 @@ public class FinderLogics : MonoBehaviour
         score += newScore;
         UI.UpdateScore(score);
     }
+
+    // public void UpdateStreak(bool streakContinues)
+    // {
+    //     if(streakContinues)
+    //     {
+    //         streak++;
+    //         streakText.text = streak.ToString();
+    //     } else
+    //     {
+    //         streak = 0;
+    //         streakText.text = streak.ToString();
+    //     }
+    // }
 
     void AllBlank()
     {
@@ -228,17 +265,18 @@ public class FinderLogics : MonoBehaviour
         }
     }
 
-    // public void CheckCorrect()
-    // {
-    //     if(numberOfCorrect == maxCorrect)
-    //     {
-    //         streak++;
-    //     } else
-    //     {
-    //         streak = 0;
-    //     }
-    //     numberOfCorrect = 0;
-    // }
+    public void CheckCorrect()
+    {
+        if(numberOfCorrect != maxCorrect)
+        {
+            int missingCorrect = maxCorrect - numberOfCorrect;
+            for (int i = 0; i < missingCorrect; i++)
+            {
+            LoseLife();
+            }
+        } 
+        numberOfCorrect = 0;
+    }
 
     void SelectCorrect(int amountCorrect)
     {
@@ -252,29 +290,29 @@ public class FinderLogics : MonoBehaviour
         }
     }
 
-    void ActivateWalls()
-    {
-       leftWall.SetActive(true);
-       rightWall.SetActive(true);
-       bottomWall.SetActive(true);
-       topWall.SetActive(true); 
-    }
+    // void ActivateWalls()
+    // {
+    //    leftWall.SetActive(true);
+    //    rightWall.SetActive(true);
+    //    bottomWall.SetActive(true);
+    //    topWall.SetActive(true); 
+    // }
 
-    void GreenWalls()
-    {
-        leftWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
-        rightWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
-        bottomWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
-        topWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
-    }
+    // void GreenWalls()
+    // {
+    //     leftWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
+    //     rightWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
+    //     bottomWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
+    //     topWall.GetComponent<SpriteRenderer>().color = new Color32(9,233,0,100);
+    // }
 
-    void RedWalls()
-    {
-        leftWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
-        rightWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
-        bottomWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
-        topWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
-    }
+    // void RedWalls()
+    // {
+    //     leftWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
+    //     rightWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
+    //     bottomWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
+    //     topWall.GetComponent<SpriteRenderer>().color = new Color32(233,0,22,100);
+    // }
 
     IEnumerator ToggleTimer()
     {  
@@ -288,7 +326,7 @@ public class FinderLogics : MonoBehaviour
 
                 timeRemaining--;
             } else {   
-                GameOver();
+                // GameOver();
                 yield break;
             }
         }
@@ -296,14 +334,14 @@ public class FinderLogics : MonoBehaviour
 
     public void CheckScent()
     {
-        if(ScentOptionScript.appleSelected)
+        if(ScentOptionScript.roseSelected)
         {
-            prefab = apple;
-            gameBgList = new List<Sprite>(appleBgList);
-        } else if (ScentOptionScript.cloveSelected)
+            prefab = rose;
+            gameBgList = new List<Sprite>(roseBgList);
+        } else if (ScentOptionScript.vanillaSelected)
         {
-            prefab = clove;
-            gameBgList = new List<Sprite>(cloveBgList);
+            prefab = vanilla;
+            gameBgList = new List<Sprite>(vanillaBgList);
         } else if (ScentOptionScript.coffeeSelected)
         {
             prefab = coffee;
